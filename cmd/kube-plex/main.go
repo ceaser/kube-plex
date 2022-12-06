@@ -143,8 +143,10 @@ func main() {
 // Checks if bypass is needed
 func needBypass(args []string) bool {
 	badArg, _ := regexp.Compile("^(e?ac3|truehd|mlp)_eae$")
+	tunerArg, _ := regexp.Compile("^https?://192.168.1.8")
+	liveArg, _ := regexp.Compile("^https?://127.0.0.1:32400/livetv")
 	for _, a := range args {
-		if badArg.Match([]byte(a)) {
+		if badArg.Match([]byte(a)) || tunerArg.Match([]byte(a)) || liveArg.Match([]byte(a)) {
 			return true
 		}
 	}

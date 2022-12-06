@@ -54,6 +54,8 @@ func Test_needBypass(t *testing.T) {
 		{"bypass truehd_eae", []string{"...", "-codec:1", "truehd_eae", "-eaeprefix:1", "..."}, true},
 		{"bypass mlp_eae", []string{"...", "-codec:1", "mlp_eae", "-eaeprefix:1", "..."}, true},
 		{"don't bypass with ac3", []string{"...", "-codec:1", "ac3", "-prefix:1", "..."}, false},
+		{"bypass http", []string{"...", "-i", "http://192.168.1.8:5004/auto/v665", "..."}, true},
+		{"bypass live http", []string{"...", "-i", "http://127.0.0.1:32400/livetv/sessions/9fa55b21-381d-47b6-821b-9d80f41756e6/e10n1b33sku2unl3c5lnwlqq/index.m3u8?offset=0.000000&X-Plex-Incomplete-Segments=1&X-Plex-Token=xxxxxxxxxxxxxxxxxxxx", "..."}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
